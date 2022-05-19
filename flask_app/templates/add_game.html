@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>Add Game</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a href="#" class="navbar-brand">Game Application</a>
+            <button 
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navmenu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="#Home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/dashboard" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/new/game" class="nav-link">Add a Game</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#About" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#Support" class="nav-link">Support</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Form-->
+    <div class="container">
+        <div class="row mt-3 mb-5">
+            <p class="fs-1 text-center"> Add your game</p>
+        </div>
+        <div class="card mt-5 shadow p-3 mb-5 bg-body rounded">
+            <div class="card-body pt-5 pb-5">
+                <form action="/games/add_to_db", method="POST">
+                    {% with messages = get_flashed_messages()%}     <!-- declare a variable called messages -->
+                        {% if messages %}                            <!-- check if there are any messages -->
+                            {% for message in messages %}            <!-- loop through the messages -->
+                                <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    <div class="row justify-content-center">
+                        <div class="col-4">
+                            <div class="form-group mb-3 w-50">
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" class="form-control">
+                            </div>
+                            <div class="form-group mb-3 w-50">
+                                <label for="genre">Genre:</label>
+                                <input type="text" name="genre" class="form-control">
+                            </div>
+                            <div class="form-group mb-3 w-50">
+                                <label for="subgenre"></label>Subgenre:</label>
+                                <input type="text" name="subgenre" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="max_players"></label>Max players:</label>
+                                <input type="number" name="max_players" class="form-control">
+                            </div>
+                            <div class="form-group ms-5">
+                                <label for="description"> Description:</label>
+                                <textarea name="description" class="form-control"></textarea>
+                            </div>
+                            <br>
+                            <div class="ms-5">
+                                <button class="btn btn-info">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
